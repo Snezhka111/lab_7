@@ -1,0 +1,26 @@
+version '3.8'
+
+services
+  api
+    build
+      context .api
+      dockerfile Dockerfile
+    ports
+      - 30013001
+    environment
+      - PORT=3001
+    volumes
+      - .apiusrsrcapp
+    command node srcindex.js
+    depends_on
+      - frontend
+
+  frontend
+    build
+      context .frontend
+      dockerfile Dockerfile
+    ports
+      - 30003000
+    volumes
+      - .frontendusrsrcapp
+    command npm start
